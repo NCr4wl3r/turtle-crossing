@@ -10,12 +10,16 @@ screen.bgcolor("black")
 screen.tracer(0)
 screen.listen()
 
+scoreboard = Scoreboard()
 turtle_player = Player()
 cars = CarManager()
+
+# init values:
 loop_counter = 0
 lvl = 1
-
+scoreboard.print_score(lvl)
 game_is_on = True
+
 while game_is_on:
     loop_counter += 1
     time.sleep(0.1)
@@ -34,6 +38,7 @@ while game_is_on:
     # check cars colision:
     for car in cars.cars:
         if turtle_player.distance(car) < 20:
+            scoreboard.print_game_over()
             game_is_on = False
 
     # Check Player arrive finish line:
@@ -43,5 +48,6 @@ while game_is_on:
         # rise lvl
         lvl += 1
         cars.update_cars_speed(lvl)
+        scoreboard.print_score(lvl)
 
 screen.exitonclick()
