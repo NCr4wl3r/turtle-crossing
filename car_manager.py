@@ -11,7 +11,9 @@ class CarManager:
         self.cars = []
 
     def add_new_car(self, lvl):
-        self.cars.append(Car(lvl))
+        max_rand = 9 - lvl if lvl < 8 else 2
+        if randint(1, 9 - lvl) == 1:
+            self.cars.append(Car(lvl))
 
     def clear_cars(self):
         self.cars.clear()

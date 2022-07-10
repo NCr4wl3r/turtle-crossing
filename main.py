@@ -15,25 +15,20 @@ turtle_player = Player()
 cars = CarManager()
 
 # init values:
-loop_counter = 0
 lvl = 1
 scoreboard.print_score(lvl)
 game_is_on = True
 
-while game_is_on:
-    loop_counter += 1
-    time.sleep(0.1)
-    screen.update()
+# Player movement event
+screen.onkeypress(turtle_player.move_up, key="Up")
 
-    # Create cars every 6 loops:
-    if loop_counter % 6 == 0:
-        cars.add_new_car(lvl)
+while game_is_on:
+
+    # Create cars:
+    cars.add_new_car(lvl)
 
     # move the cars
     cars.move_cars()
-
-    # Player movement event
-    screen.onkeypress(turtle_player.move_up, key="Up")
 
     # check cars colision:
     for car in cars.cars:
@@ -49,5 +44,9 @@ while game_is_on:
         lvl += 1
         cars.update_cars_speed(lvl)
         scoreboard.print_score(lvl)
+
+    time.sleep(0.1)
+    screen.update()
+
 
 screen.exitonclick()
