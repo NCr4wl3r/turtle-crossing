@@ -12,8 +12,14 @@ class Player(Turtle):
         self.color("white")
         self.shape("turtle")
         self.setheading(90)
-        self.goto(STARTING_POSITION)
+        self.reset_position()
 
     def move_up(self):
         new_position = self.ycor() + MOVE_DISTANCE
         self.sety(new_position)
+
+    def reset_position(self):
+        self.goto(STARTING_POSITION)
+
+    def is_on_finish_line(self):
+        return self.ycor() >= FINISH_LINE_Y
