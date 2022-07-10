@@ -12,7 +12,7 @@ screen.listen()
 
 scoreboard = Scoreboard()
 turtle_player = Player()
-cars = CarManager()
+cars_manager = CarManager()
 
 # init values:
 lvl = 1
@@ -25,13 +25,13 @@ screen.onkeypress(turtle_player.move_up, key="Up")
 while game_is_on:
 
     # Create cars:
-    cars.add_new_car(lvl)
+    cars_manager.add_new_car(lvl)
 
     # move the cars
-    cars.move_cars()
+    cars_manager.move_cars()
 
     # check cars colision:
-    for car in cars.cars:
+    for car in cars_manager.cars:
         if turtle_player.distance(car) < 20:
             scoreboard.print_game_over()
             game_is_on = False
@@ -42,7 +42,7 @@ while game_is_on:
         turtle_player.reset_position()
         # rise lvl
         lvl += 1
-        cars.update_cars_speed(lvl)
+        cars_manager.update_cars_speed(lvl)
         scoreboard.print_score(lvl)
 
     time.sleep(0.1)
