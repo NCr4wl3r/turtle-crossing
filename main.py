@@ -11,11 +11,22 @@ screen.tracer(0)
 screen.listen()
 
 turtle = Player()
+cars = CarManager()
+loop_counter = 0
+lvl = 1
 
 game_is_on = True
 while game_is_on:
+    loop_counter += 1
     time.sleep(0.1)
     screen.update()
+
+    # Create cars every 6 loops:
+    if loop_counter % 6 == 0:
+        cars.add_new_car(lvl)
+
+    # move the cars
+    cars.move_cars()
 
     # Player movement event
     screen.onkeypress(turtle.move_up, key="Up")
