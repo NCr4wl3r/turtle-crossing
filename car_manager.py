@@ -20,6 +20,10 @@ class CarManager:
         for car in self.cars:
             car.move()
 
+    def update_cars_speed(self, lvl):
+        for car in self.cars:
+            car.set_speed(lvl)
+
 
 class Car(Turtle):
     def __init__(self, lvl) -> None:
